@@ -4,20 +4,29 @@ import { AiFillStar, AiOutlineStar, AiOutlineMinus, AiOutlinePlus } from 'react-
 
 import { client, urlFor } from '../client';
 import { useStateContext } from '../context/StateContext';
+import Product from './Product';
 
 const ProductDetail = () => {
   const { slug } = useParams();
   const [imgIndex, setImgIndex] = useState(0)
-  const [productDetail, setProductDetail] = useState({})
+  const [productDetail, setProductDetail] = useState({});
+  const [likeProduct, setLikeProduct] = useState([]);
   const query = `*[_type == "product" && slug.current == "${slug}"][0]`;
+  const query_like = `*[_type == "product"]`;
+
 
   const { qty, setQty, icQty, decQty, onAdd } = useStateContext()
 
   useEffect(() => {
     client.fetch(query).then((data) => {
       setProductDetail(data)
-    })
+    });
+    client.fetch(query_like).then((data) => {
+      setLikeProduct(data)
+    });
   }, []);
+
+  console.log(likeProduct)
 
   const { image, name, details, price } = productDetail;
 
@@ -31,9 +40,9 @@ const ProductDetail = () => {
           <div className='small-images-container'>
             {
               image && image?.map((img, index) => 
-                <img key={index} src={urlFor(img)} className={index === imgIndex ? 'selected-image small-image' : 'small-image'}
-                  onMouseEnter={() => setImgIndex(index)}
-                />
+                // <img key={index} src={urlFor(img)} className={index === imgIndex ? 'selected-image small-image' : 'small-image'} onMouseEnter={() => setImgIndex(index)} />
+
+                console.log(img)
               )
             }
           </div>
@@ -70,6 +79,18 @@ const ProductDetail = () => {
             <button className='buy-now btn'>Buy Now</button>
           </div>
         </div>
+      </div>
+      <div className="maylike-products-wrapper">
+            <h2>You may also like</h2>
+            <div className="marquee">
+              <div className="maylike-products-container track">
+                {
+                  likeProduct && likeProduct?.map((product) => (
+                    <Product key={product?._id} name={product?.name} image={product?.image} price={product?.price} slug={product?.slug}/>
+                  ))
+                }
+              </div>
+          </div>
       </div>
     </div>
   )

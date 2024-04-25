@@ -77,6 +77,11 @@ a {
 	transform: scale(1.1, 1.1)
 }
 
+.cart-wrapper .btn{
+	margin-top: 40px;
+	height: 50px;
+}
+
 .cart-item-qty {
 	position: absolute;
 	color: #fff;
@@ -142,7 +147,7 @@ a {
 }
 .empty-cart svg {
 	color: #ebebeb;
-	font-size: 60px;
+	font-size: 100px;
 }
 
 .product-container {
@@ -534,4 +539,47 @@ img {
 
 .quantity-desc .plus {
 	color: rgb(43, 123, 123);
+}
+
+.maylike-products-wrapper {
+	margin-top: 120px;
+}
+.maylike-products-wrapper h2 {
+	font-size: 40px;
+    font-weight: 900;
+	text-align: center;
+	margin: 50px;
+	color: #324d67;
+}
+.maylike-products-container {
+	display: flex;
+	justify-content: center;
+	gap: 25px;
+	margin-top: 20px;
+}
+.maylike-products-container > div {
+	width: 20%;
+	max-width: 300px;
+}
+.marquee {
+	position: relative;
+	height: 400px;
+	width: 100%;
+	overflow-x: hidden;
+}
+
+.track {
+	position: absolute;
+    top: 0;
+    left: 0;
+    width: 180%;
+    animation: marquee 15s linear infinite;
+}
+.track:hover {
+	animation-play-state: paused;
+}
+
+@keyframes marquee {
+	from {transform: translateX(0);}
+	to {transform: translateX(-50%);}
 }
