@@ -583,3 +583,21 @@ img {
 	from {transform: translateX(0);}
 	to {transform: translateX(-50%);}
 }
+
+.success-wrapper {
+	text-align: center;
+	margin-top: 150px;
+}
+
+.success-wrapper .btn {
+	margin-top: 25px;
+}
+
+.success-wrapper svg {
+	font-size: 70px;
+}
+
+.success-wrapper h2 {
+	margin-bottom: 25px;	
+	margin-top: 25px;
+}

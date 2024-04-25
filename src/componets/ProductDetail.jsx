@@ -28,7 +28,7 @@ const ProductDetail = () => {
 
   console.log(likeProduct)
 
-  const { image, name, details, price } = productDetail;
+  const { image, name, details, price, _id } = productDetail;
 
   return (
     <div>
@@ -85,7 +85,7 @@ const ProductDetail = () => {
             <div className="marquee">
               <div className="maylike-products-container track">
                 {
-                  likeProduct && likeProduct?.map((product) => (
+                  likeProduct && likeProduct?.filter((item) => item._id !== _id).map((product) => (
                     <Product key={product?._id} name={product?.name} image={product?.image} price={product?.price} slug={product?.slug}/>
                   ))
                 }

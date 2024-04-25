@@ -6,3 +6,4 @@ export { default as Navbar } from './Navbar';
 export { default as Product } from './Product';
 export { default as ProductDetail } from './ProductDetail'; 
 export { default as Homepage } from './Homepage';
+export { default as Success } from './Success';
