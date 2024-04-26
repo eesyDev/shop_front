@@ -15,7 +15,7 @@ const ProductDetail = () => {
   const query_like = `*[_type == "product"]`;
 
 
-  const { qty, setQty, icQty, decQty, onAdd } = useStateContext()
+  const { qty, setQty, icQty, decQty, onAdd, setShowCart } = useStateContext()
 
   useEffect(() => {
     client.fetch(query).then((data) => {
@@ -26,25 +26,27 @@ const ProductDetail = () => {
     });
   }, []);
 
-  console.log(likeProduct)
+  const handleBuyNow = () => {
+    onAdd(productDetail, qty);
+    setShowCart(true)
+  }
 
   const { image, name, details, price, _id } = productDetail;
 
   return (
     <div>
       <div className="product-detail-container">
-        <div>
+        <div  className='image-gallery'>
           <div className="image-container">
             {image && <img src={urlFor(image && image[imgIndex])} className="product-detail-image" />}
           </div>
           <div className='small-images-container'>
-            {
+            {/* {
               image && image?.map((img, index) => 
-                // <img key={index} src={urlFor(img)} className={index === imgIndex ? 'selected-image small-image' : 'small-image'} onMouseEnter={() => setImgIndex(index)} />
+                <img key={index} src={urlFor(img)} className={index === imgIndex ? 'selected-image small-image' : 'small-image'} onMouseEnter={() => setImgIndex(index)} />
 
-                console.log(img)
               )
-            }
+            } */}
           </div>
         </div>
         <div className="product-detail-desc">
@@ -76,7 +78,7 @@ const ProductDetail = () => {
           </div>
           <div className="buttons">
             <button className='add-to-cart btn' onClick={() => onAdd(productDetail, qty)}>Add to cart</button>
-            <button className='buy-now btn'>Buy Now</button>
+            <button className='buy-now btn' onClick={handleBuyNow}>Buy Now</button>
           </div>
         </div>
       </div>

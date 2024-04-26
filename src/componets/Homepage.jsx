@@ -18,7 +18,6 @@ const Homepage = () => {
     client.fetch(bannerQuery).then((data) => setBannerData(data[0]))
   }, []);
 
-  console.log(productData)
   return (
     <div>
       <HeroBanner
@@ -39,7 +38,6 @@ const Homepage = () => {
         }
       </div>
       <FooterBanner footerBanner={bannerData}/>
-      <Footer/>
     </div>
   )
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
-import { Homepage, ProductDetail, Product, Navbar, Success } from './componets';
+import { Homepage, ProductDetail, Footer, Navbar, Success } from './componets';
 import './App.css';
 
 function App() {
@@ -13,6 +13,7 @@ function App() {
           <Route path='/product/:slug' element={<ProductDetail/>}  />
           <Route path='/success' element={<Success/>}/>
         </Routes>
+        <Footer/>
       </div>
     </div>
   );

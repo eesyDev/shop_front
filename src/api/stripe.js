@@ -1,10 +1,6 @@
-// import Stripe from 'stripe';
-
-// const stripe = new Stripe('sk_test_51McN7VEQc6TYnPrSLlam18XwKnXtCFnMG12UUK0QKFgxtVa4foX4CQa6CT4Wmcqum2zq9N40fIL35ucdiW9xY3Gk00mz9XDp53');
-
 const express = require('express');
 const router = express.Router();
-const stripe = require('stripe')('sk_test_51McN7VEQc6TYnPrSLlam18XwKnXtCFnMG12UUK0QKFgxtVa4foX4CQa6CT4Wmcqum2zq9N40fIL35ucdiW9xY3Gk00mz9XDp53');
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 router.post('/', async (req, res) => {
   const { cartItems } = req.body;
@@ -34,7 +30,7 @@ router.post('/', async (req, res) => {
             }
         }),
         success_url: `${req.headers.origin}/success`,
-        cancel_url: `${req.headers.origin}/cancel`,
+        cancel_url: `${req.headers.origin}/`,
     }
     const session = await stripe.checkout.sessions.create(params);
     res.status(200).json(session)

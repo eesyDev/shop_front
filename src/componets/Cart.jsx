@@ -52,7 +52,7 @@ const Cart = () => {
 			<div className="empty-cart">
 				<AiOutlineShopping/>
 				<h3>Your shopping bag is empty</h3>
-				<button type="button" className='btn'>
+				<button type="button" className='btn' onClick={() => setShowCart(false)}>
 					Continue shopping
 				</button>
 			</div>
