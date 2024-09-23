@@ -1,10 +1,21 @@
 const express = require('express');
+const helmet = require('helmet');
+import { loadStripe } from '@stripe/stripe-js';
+
+const app = express();
+
 const router = express.Router();
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const stripe = require('stripe')('эsk_test_51McN7VEQc6TYnPrSLlam18XwKnXtCFnMG12UUK0QKFgxtVa4foX4CQa6CT4Wmcqum2zq9N40fIL35ucdiW9xY3Gk00mz9XDp53');
+
+app.use(helmet());
+app.use(helmet.contentSecurityPolicy({
+  directives: {
+    defaultSrc: ["'self'"],
+    scriptSrc: ["'self'", "'unsafe-eval'"],  }
+}));
 
 router.post('/', async (req, res) => {
   const { cartItems } = req.body;
-  console.log(cartItems);
   try {
     const params = {
         submit_type: 'pay',

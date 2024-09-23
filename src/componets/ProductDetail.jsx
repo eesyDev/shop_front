@@ -15,7 +15,7 @@ const ProductDetail = () => {
   const query_like = `*[_type == "product"]`;
 
 
-  const { qty, setQty, icQty, decQty, onAdd, setShowCart } = useStateContext()
+  const { qty, setQty, icQty, decQty, onAdd, setShowCart, cartItems, totalPrice, totalQuantities } = useStateContext();
 
   useEffect(() => {
     client.fetch(query).then((data) => {
@@ -25,6 +25,7 @@ const ProductDetail = () => {
       setLikeProduct(data)
     });
   }, []);
+
 
   const handleBuyNow = () => {
     onAdd(productDetail, qty);

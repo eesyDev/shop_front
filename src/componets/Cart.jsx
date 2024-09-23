@@ -2,6 +2,7 @@ import React from 'react';
 import {AiOutlineMinus, AiOutlinePlus, AiOutlineShopping, AiOutlineRight} from 'react-icons/ai';
 import { TiDeleteOutline } from 'react-icons/ti';
 import { toast } from 'react-hot-toast';
+import { loadStripe } from '@stripe/stripe-js';
 
 
 import { useStateContext } from '../context/StateContext';
@@ -10,6 +11,8 @@ import getStripe from '../stripe';
 
 const Cart = () => {
   const { setShowCart, cartItems, totalPrice, totalQuantities, toggleCartItemQuantity, onRemove } = useStateContext();
+
+  const carList = JSON.parse(localStorage.getItem('products'))
 
   const handleCheckout = async () => {
     try {
@@ -35,7 +38,7 @@ const Cart = () => {
 
       stripe.redirectToCheckout({ sessionId: data.id });
     } catch (err) {
-      console.error('Error during checkout')
+      console.error(err, 'Error during checkout')
     }
   }
   
